@@ -2,7 +2,7 @@ import math
 
 import numpy as np
 
-from type import Scene, SurfaceData, Ray
+from firefly.type import Scene, SurfaceData, Ray
 
 
 def sphere(center, radius) -> Scene:

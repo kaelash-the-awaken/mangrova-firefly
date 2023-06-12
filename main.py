@@ -1,14 +1,11 @@
 from PIL import Image
 
-from camera.orthographic_camera import orthographic_camera
-from hitable import merge_scene_content
-from hitable.sphere import sphere
-from type import Camera, Scene
+import firefly
 
 
 def render(width: int, height: int):
-    camera: Camera = orthographic_camera(width, height, 1, position=[0, 0, 2], direction=[0, 0, -1])
-    scene: Scene = merge_scene_content(sphere([0, 0, 0], 1), sphere([0, -50, 0], 49))
+    camera: firefly.Camera = firefly.orthographic_camera(width, height, 1, position=[0, 0, 2], direction=[0, 0, -1])
+    scene: firefly.Scene = firefly.merge_scene_content(firefly.sphere([0, 0, 0], 1), firefly.sphere([0, -50, 0], 49))
     image_data_int = camera(scene)
 
     result_image = Image.new("RGB", (width, height))
