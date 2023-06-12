@@ -2,8 +2,8 @@ import math
 
 import numpy as np
 
-from type import Camera
-from . import _generic_camera, random_sampler
+from firefly.type import Camera
+from .abstract_camera import random_sampler, _generic_camera
 
 
 def orthographic_camera(width: int, height: int, focal: float, position=None, direction=None) -> Camera:

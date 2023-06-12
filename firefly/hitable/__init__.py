@@ -1,4 +1,6 @@
-from type import Scene, Ray
+from firefly.type import Scene, Ray
+
+from .sphere import *
 
 
 def merge_scene_content(main_scene: Scene, other: Scene):
