@@ -13,6 +13,10 @@ def merge_scene_content(main_scene: Scene, other: Scene):
         surface_data_scene.position[visible_mask] = surface_data_object.position[visible_mask]
         surface_data_scene.normal[visible_mask] = surface_data_object.normal[visible_mask]
 
+        nb_material = len(surface_data_scene.material_list)
+        surface_data_scene.material_id[visible_mask] = surface_data_object.material_id[visible_mask] + nb_material
+        surface_data_scene.material_list += surface_data_object.material_list
+
         return surface_data_scene
 
     return __compute_intersection
