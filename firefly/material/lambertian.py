@@ -16,9 +16,13 @@ def __sample_diffuse(normal):
     return secondary_direction / np.clip(np.linalg.norm(secondary_direction, axis=1)[:, np.newaxis], 0.001, None)
 
 
-def lambertian_material(color):
+def lambertian_material(color, nb_sample=1):
     def __rho(position, normal, integrator, __step):
-        return color * integrator((position, __sample_diffuse(normal)), __step=__step + 1)
+        def __compute_light():
+            directions = __sample_diffuse(normal)
+            return integrator((position, directions), __step=__step + 1)
+
+        return np.sum((__compute_light() for _ in range(nb_sample)), axis=0) * color * (1 / nb_sample)
 
     def __rho_sample(position, normal, direction):
         return color * np.clip(np.einsum("ij,ij->i", normal, direction), 0, None)[:, np.newaxis] / math.pi

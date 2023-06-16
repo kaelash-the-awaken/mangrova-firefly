@@ -12,8 +12,7 @@ def integrator(scene: Scene) -> Integrator:
         cumulated_light = np.zeros((position.shape[0], 3))
         for material_id, (rho, _) in enumerate(surface_data.material_list):
             material_mask = np.equal(surface_data.material_id[mask], material_id)
-            cumulated_light[material_mask] += rho(position[material_mask], normal[material_mask], integrator,
-                                                  __step + 1) \
+            cumulated_light[material_mask] += rho(position[material_mask], normal[material_mask], integrator, __step) \
                 if np.any(material_mask) else 0.0
 
         return cumulated_light

@@ -22,10 +22,8 @@ def _generic_camera(width: int, height: int, sampler: Sampler, generator: Camera
         v = np.linspace([0, 1, 0] - half_pix_height, half_pix_height, height)
         uv_screen_pos = np.tile(u, (height, 1)) + np.repeat(v, width, axis=0)
 
-        time_begin = time.time()
-        test = [integrator(generator(sampler(1 / width, 1 / height, uv_screen_pos)), 0) for _ in range(20)]
-        result = np.sum(test, axis=0) * 1 / 20
-        print(time.time() - time_begin)
+        samples = [integrator(generator(sampler(1 / width, 1 / height, uv_screen_pos)), 0) for _ in range(10)]
+        result = np.sum(samples, axis=0) * 1 / 10
         return (result * 255).astype(int)
 
     return __generate_image
