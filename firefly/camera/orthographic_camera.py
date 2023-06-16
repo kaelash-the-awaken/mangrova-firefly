@@ -24,6 +24,6 @@ def orthographic_camera(width: int, height: int, focal: float, position=None, di
         # Now we can compute the direction of each ray
         ray_direction = camera_px_pos - position
         ray_direction /= np.expand_dims(np.linalg.norm(ray_direction, axis=1), axis=1)
-        return np.ones_like(ray_direction) * position, ray_direction
+        return np.full_like(ray_direction, position), ray_direction
 
-    return _generic_camera(width, height, random_sampler(20), __compute_ray)
+    return _generic_camera(width, height, random_sampler(), __compute_ray)
