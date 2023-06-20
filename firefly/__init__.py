@@ -1,4 +1,5 @@
 from .camera import *
-from .hitable import *
-from .type import *
+from .hittable import *
 from .renderer import *
+from .type import *
+from .light import *
