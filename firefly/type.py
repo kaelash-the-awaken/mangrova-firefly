@@ -19,7 +19,9 @@ class SurfaceData:
         self.material_list = material_list
 
 
-Scene = Callable[[float, float, Ray], SurfaceData]
+Scene = Hittable = Callable[[float, float, Ray], SurfaceData]
+Light = Callable[[np.ndarray, np.ndarray, Material, Scene], np.ndarray]
+
 Camera = Callable[[Integrator], np.ndarray]
 CameraRayGenerator = Callable[[np.ndarray], Ray]
 Sampler = Callable[[float, float, np.ndarray], np.ndarray]

@@ -2,7 +2,7 @@ import math
 
 import numpy as np
 
-from firefly.type import Camera
+from firefly.type import Camera, Ray
 from .abstract_camera import random_sampler, _generic_camera
 
 
@@ -10,7 +10,7 @@ def orthographic_camera(width: int, height: int, focal: float, position=None, di
     direction = np.array([0, 0, 1] if direction is None else direction)
     position = np.array([0, 0, 0] if position is None else position)
 
-    def __compute_ray(uv_screen_pos: np.matrix):
+    def __compute_ray(uv_screen_pos: np.ndarray) -> Ray:
         screen_width = math.tan(90 / 2) * focal * 2.0
         screen_height = screen_width * float(height / width)
 
