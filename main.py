@@ -7,10 +7,11 @@ def render(width: int, height: int):
     renderer = firefly.Renderer(background_color=[0.5, 0.5, 1.0])
     camera: firefly.Camera = firefly.orthographic_camera(width, height, 1, position=[0, 0, 2], direction=[0, 0, -1])
     scene = [
-        firefly.sphere([0, 0, 0], 1, color=[1, 1, 1]),
-        firefly.sphere([0, -50, 0], 49, color=[1, 0, 0])
+        firefly.sphere([2, 0, 0], 1, material=firefly.material.lambertian_material([0.8, 0.8, 0.8])),
+        firefly.sphere([0, 0, 0], 1, material=firefly.material.transparent_material([1, 1, 1], 1.5)),
+        firefly.sphere([0, -50, 0], 49, material=firefly.material.lambertian_material([1, 0, 0]))
     ]
-    lights = [firefly.PointLight([2, 2, 2])]
+    lights = [firefly.PointLight([10, 10, 10])]
     image_data_int = renderer(camera, scene, lights)
 
     result_image = Image.new("RGB", (width, height))

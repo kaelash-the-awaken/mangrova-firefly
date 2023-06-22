@@ -5,7 +5,7 @@ import numpy as np
 Ray = Tuple[np.ndarray, np.ndarray]
 Integrator = Callable[[Ray, int], np.ndarray]
 Material = Tuple[
-    Callable[[np.ndarray, np.ndarray, Integrator, int], np.ndarray],
+    Callable[[np.ndarray, np.ndarray, np.ndarray, Integrator, int], np.ndarray],
     Callable[[np.ndarray, np.ndarray, np.ndarray], np.ndarray]
 ]
 
