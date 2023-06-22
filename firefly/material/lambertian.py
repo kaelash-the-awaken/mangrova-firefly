@@ -17,7 +17,7 @@ def __sample_diffuse(normal):
 
 
 def lambertian_material(color, nb_sample=1):
-    def __rho(position, normal, integrator, __step):
+    def __rho(position, normal, wi, integrator, __step):
         def __compute_light():
             directions = __sample_diffuse(normal)
             return integrator((position, directions), __step=__step + 1)

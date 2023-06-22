@@ -2,13 +2,10 @@ import math
 
 import numpy as np
 
-from firefly.material import lambertian_material
-from firefly.type import Scene, SurfaceData, Ray
+from firefly.type import Scene, SurfaceData, Ray, Material
 
 
-def sphere(center, radius, color=[0.5, 0.5, 0.5]) -> Scene:
-    material = lambertian_material(color)
-
+def sphere(center, radius, material: Material) -> Scene:
     def __compute_sphere_intersection(t_min: float, t_max: float, ray: Ray):
         origin, direction = ray
 
